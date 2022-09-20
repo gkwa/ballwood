@@ -1,0 +1,16 @@
+Package: streambox-react-webui
+Version: 0.9.0
+Section: Network
+Priority: optional
+Architecture: all
+Essential: no
+Depends: 
+Suggests: 
+Installed-size:
+Maintainer: Development@Streambox<dev@streambox.com>
+Conflicts:
+Replaces:
+Provides:
+Description:  Streambox React-based webUI
+    React-based webUI for Streambox Encoder/Decoder w/ REST API
+

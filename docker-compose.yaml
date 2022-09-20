@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  rpmbuilder:
+    entrypoint:
+    - bash
+    - -c
+    - |
+      mkdir -p /root/rpmbuild/SPECS/
+      cp /tmp/src/reactwebui.spec /root/rpmbuild/SPECS/
+      /tmp/src/make_react_webui_rpm.sh
+      find /root/rpmbuild/RPMS -type f -iname '*.rpm' -exec cp {} /dist \;
+      cd /dist && /dist/testrpm.sh
+    image: docker.io/taylorm/rpmbuilder
+    volumes:
+    - ./sbphplogin-reactapp:/tmp/src/sbphplogin-reactapp
+    - ./streambox-templates-app:/tmp/src/streambox-templates-app
+    - .:/tmp/src
+    - .:/dist
+  debbuilder:
+    entrypoint:
+    - bash
+    - -c 
+    - |
+      cp -r /tmp/src/DEBIAN /tmp
+      cp /tmp/src/make_react_webui_deb.sh /tmp
+      /tmp/src/make_react_webui_deb.sh
+      cp /tmp/*.deb /dist
+      cd /dist && /dist/testdeb.sh
+    image: docker.io/taylorm/debbuilder
+    volumes:
+    - ./sbphplogin-reactapp:/tmp/src/sbphplogin-reactapp
+    - ./streambox-templates-app:/tmp/src/streambox-templates-app
+    - .:/tmp/src
+    - .:/dist
