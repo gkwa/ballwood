@@ -5,4 +5,4 @@
 [submodule "sbphplogin-reactapp"]
 	path = sbphplogin-reactapp
 	url = https://github.com/djklu31/sbphplogin-reactapp.git
-	branch = master
+	branch = main
