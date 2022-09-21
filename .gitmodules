@@ -1,6 +1,8 @@
 [submodule "streambox-templates-app"]
 	path = streambox-templates-app
 	url = https://github.com/djklu31/streambox-templates-app
+	branch = master
 [submodule "sbphplogin-reactapp"]
 	path = sbphplogin-reactapp
 	url = https://github.com/djklu31/sbphplogin-reactapp.git
+	branch = master
