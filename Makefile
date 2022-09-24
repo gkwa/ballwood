@@ -5,6 +5,10 @@ build:
 	docker compose up
 	du -sh *.deb *.rpm
 
+reset:
+	git submodule deinit -f .
+	git submodule update --init
+
 update:
 	git submodule update --init --recursive
 	git submodule update --remote
