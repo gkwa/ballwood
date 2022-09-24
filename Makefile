@@ -11,8 +11,9 @@ reset:
 update:
 	git submodule update --init --recursive
 	git submodule update --remote
-	git submodule foreach --recursive git status
-	git submodule foreach --recursive git diff --name-status
+
+diff:
+	 git diff --submodule=diff
 
 clean:
 	rm -f *.deb *.rpm
