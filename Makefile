@@ -1,6 +1,5 @@
 build:
 	rm -f *.deb *.rpm
-	$(MAKE) update
 	docker compose down --remove-orphans
 	docker compose up
 	du -sh *.deb *.rpm
