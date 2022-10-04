@@ -1,5 +1,5 @@
 Name        : streambox_react_webui
-Version     : 0.12.0
+Version     : 1.2.0
 Release     : 1
 BuildArch   : noarch
 Group       : Applications/Multimedia
