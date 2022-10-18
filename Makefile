@@ -4,6 +4,12 @@ build:
 	docker compose up
 	du -sh *.deb *.rpm
 
+deb:
+	rm -f *.deb *.rpm
+	docker compose down --remove-orphans
+	docker compose up debbuilder
+	du -sh *.deb *.rpm
+
 reset:
 	git submodule deinit -f .
 	git submodule update --init
