@@ -12,6 +12,7 @@ done
 
 sort -k2 manifest-deb.txt | cat -n
 
+ls -la /var/www/sbuiauth/logo
 exit 0
 
 find /var/local/WebData/logo -type f

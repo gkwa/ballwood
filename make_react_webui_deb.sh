@@ -38,7 +38,6 @@ mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
 
 cp "${LGN_DIST}/logo/logo.jpg" "${DIST_DIR}/var/local/WebData/logo/"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
-chmod 777 "${DIST_DIR}/var/local/WebData/logo/"
 
 mkdir -p "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/receiveFile.php"    "${DIST_DIR}/var/www/sbuiauth/"
@@ -49,14 +48,16 @@ cp "${LGN_DIST}/auth.php"           "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/streambox-logo.svg" "${DIST_DIR}/var/www/sbuiauth/"
 
 chown www-data "${DIST_DIR}/var/local/WebData/templates/"
-find "${DIST_DIR}/var/local/WebData/templates" -type d -print0 | xargs -0 -n1 chmod 777
-find "${DIST_DIR}/var/local/WebData/" -type f -print0 | xargs -0 -n1 chmod 666
-find "${DIST_DIR}/var/local/WebData/" -type f -print0 | xargs -0 -n1 chown www-data
-chmod 777 "${DIST_DIR}/var/local/WebData/templates"
+find "${DIST_DIR}/var/local/WebData" -type d -print0 | xargs -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData" -type f -print0 | xargs -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData" -type f -print0 | xargs -0 -n1 chown www-data
 
 _pwd="$(pwd)"
 cd "${DIST_DIR}/var/www/sbuiauth/"
 ln -s ../../local/WebData/logo/ logo
 cd "$_pwd"
+
+find "${DIST_DIR}/var/local/WebData" -type d -print0 | xargs -0 -n1 chmod 777
+chown -R www-data "${DIST_DIR}/var/local/WebData/"
 
 dpkg --build "${DIST_DIR}" .
