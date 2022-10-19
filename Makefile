@@ -1,14 +1,19 @@
+deb:
+	rm -f *.deb *.rpm
+	docker compose down --remove-orphans
+	docker compose run --rm debbuilder
+
 build:
 	rm -f *.deb *.rpm
 	docker compose down --remove-orphans
 	docker compose up
 	du -sh *.deb *.rpm
 
-deb:
+rpm:
 	rm -f *.deb *.rpm
 	docker compose down --remove-orphans
-	docker compose up debbuilder
-	du -sh *.deb *.rpm
+	docker compose run rpmbuilder
+	du -sh *.rpm
 
 reset:
 	git submodule deinit -f .
