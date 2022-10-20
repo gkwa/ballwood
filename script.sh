@@ -8,5 +8,3 @@ sudo -u www-data rm -f /var/www/sbuiauth/logo/logo.jpg
 sudo -u www-data find -H /var/www/sbuiauth/logo
 
 cnspec scan local -f /home/ubuntu/ballwood/test.yaml --incognito -o full
-
-cnspec
