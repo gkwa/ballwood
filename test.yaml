@@ -1,0 +1,165 @@
+policies:
+- uid: my-first-simple-test
+  name: My First Simple Test
+  version: 1.0.0
+  authors:
+  - name: Jane Doe
+    email: jane@example.com
+  tags:
+    key: value
+    another-key: another-value
+  specs:
+  - asset_filter:
+      query: platform.family.contains(_ == 'unix')
+    scoring_queries:
+      my-test2: null
+      my-test2b: null
+      my-test3: null
+      my-test4: null
+      my-test4b: null
+      my-test5: null
+      my-test6: null
+      my-test7: null
+queries:
+- uid: my-test2
+  title: /var/local/WebData/templates has expected permissions
+  severity: 100
+  query: |
+    file("/var/local/WebData/templates") {
+
+      permissions.user_readable == true
+      permissions.user_writeable == true
+      permissions.user_executable == true
+
+      permissions.group_readable == true
+      permissions.group_writeable == true
+      permissions.group_executable == true
+
+      permissions.other_readable == true
+      permissions.other_writeable == true
+      permissions.other_executable == true
+    }
+
+- uid: my-test2b
+  title: /var/local/WebData/templates has expected owner
+  severity: 100
+  query: |
+    file("/var/local/WebData/templates") {
+      user.name == 'www-data'
+      group.name == 'www-data'
+    }
+
+- uid: my-test3
+  title: /var/www/sbuiauth/ exists and has expected permissions
+  severity: 100
+  query: |
+    file("/var/www/sbuiauth/") {
+      user.name == 'root'
+      group.name == 'root'
+
+      permissions.user_readable == true
+      permissions.user_writeable == true
+      permissions.user_executable == true
+
+      permissions.group_readable == true
+      permissions.group_writeable == false
+      permissions.group_executable == true
+
+      permissions.other_readable == true
+      permissions.other_writeable == false
+      permissions.other_executable == true
+    }
+- uid: my-test4
+  title: /var/www/sbuiapp/ exists and has expected permissions
+  severity: 100
+  query: |
+    file("/var/www/sbuiapp/") {
+      user.name == 'root'
+      group.name == 'root'
+
+      permissions.user_readable == true
+      permissions.user_writeable == true
+      permissions.user_executable == true
+
+      permissions.group_readable == true
+      permissions.group_writeable == false
+      permissions.group_executable == true
+
+      permissions.other_readable == true
+      permissions.other_writeable == false
+      permissions.other_executable == true
+    }
+
+- uid: my-test4b
+  title: readonly templates are read only /var/local/WebData/templates/Colorful Prod Template (Default - Read-only)
+  severity: 100
+  query: |
+    file('/var/local/WebData/templates/Colorful Prod Template (Default - Read-only)') {
+      user.name == 'root'
+      group.name == 'root'
+
+      permissions.user_readable == true
+      permissions.group_readable == true
+      permissions.other_readable == true
+
+      permissions.user_writeable == true
+      permissions.group_writeable == false
+      permissions.other_writeable == false
+
+      permissions.user_executable == false
+      permissions.group_executable == false
+      permissions.other_executable == false
+    }
+
+
+- uid: my-test5
+  title: /var/www/sbuiauth permissions
+  severity: 100
+  docs:
+    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
+    remediation: ""
+  query: |
+    command("find /var/www/sbuiauth -printf '%u:%g:%m:%p\n'") {
+      stdout.contains("root:root:777:/var/www/sbuiauth/logo")
+      stdout.contains("root:root:755:/var/www/sbuiauth")
+      stdout.contains("root:root:644:/var/www/sbuiauth/styles.css")
+      stdout.contains("root:root:644:/var/www/sbuiauth/receiveFile.php")
+      stdout.contains("root:root:644:/var/www/sbuiauth/auth.php")
+      stdout.contains("root:root:644:/var/www/sbuiauth/streambox-logo.svg")
+      stdout.contains("root:root:644:/var/www/sbuiauth/uploadFile.php")
+      stdout.contains("root:root:644:/var/www/sbuiauth/index.php")
+    }
+
+- uid: my-test6
+  title: /var/www/sbuiauth/logo is symlink
+  severity: 100
+  docs:
+    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
+    remediation: ""
+  query: |
+    command("file /var/www/sbuiauth/logo") {
+      stdout.contains("/var/www/sbuiauth/logo: symbolic link to ../../local/WebData/logo/")
+    }
+
+- uid: my-test7
+  title: /var/www/sbuiauth/logo has the expected permissions
+  severity: 100
+  docs:
+    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
+    remediation: ""
+  query: |
+    file("/var/www/sbuiauth/logo") {
+
+      permissions.user_readable == true
+      permissions.user_writeable == true
+      permissions.user_executable == true
+
+      permissions.group_readable == true
+      permissions.group_writeable == false
+      permissions.group_executable == true
+
+      permissions.other_readable == true
+      permissions.other_writeable == false
+      permissions.other_executable == true
+    }
+

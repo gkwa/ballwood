@@ -7,7 +7,7 @@ rm -f /dist/manifest-deb.txt
 IFS='
 '
 for path in $(dpkg -L streambox-react-webui); do
-    stat -c "%U %a %A %n" "$path" >>/dist/manifest-deb.txt
+    stat -c "%U:%G %a %A %n" "$path" >>/dist/manifest-deb.txt
 done
 
 sort -k2 manifest-deb.txt | cat -n
