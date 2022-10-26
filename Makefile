@@ -33,6 +33,7 @@ diff:
 	 git diff --submodule=diff
 
 clean:
+	rm -rf React-[0-9][0-9]*-[0-9][0-9]*-[0-9][0-9]*
 	rm -f *.deb *.rpm
 	rm -f manifest-rpm.txt
 	rm -f manifest-deb.txt
