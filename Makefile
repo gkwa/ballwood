@@ -6,6 +6,9 @@ build:
 	docker compose down --remove-orphans
 	docker compose run --rm debbuilder
 
+tar:
+	bash -x tar.sh
+
 deb:
 	rm -f *.deb
 	docker compose down --remove-orphans
