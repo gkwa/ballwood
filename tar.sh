@@ -1,4 +1,4 @@
-version=$(perl -ne 'm{current_version.*= ([\d\.]+)} && print qq/$1/' .bumpversion.cfg)
+version=$(perl -ne 'm{current_version.*= *([\d\.]+)} && print qq/$1/' .bumpversion.cfg)
 deb=streambox-react-webui_${version}_all.deb
 datestamp=$(date +%y-%m-%d)
 mkdir -p React-${datestamp}
