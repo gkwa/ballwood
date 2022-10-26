@@ -1,4 +1,4 @@
-deb:
+build:
 	perl -i -p -e 's#Version \d+\.\d+.*#Version VERSION#' streambox-templates-app/index.html
 	cd streambox-templates-app && npm install . && npm run build
 	bump2version minor --allow-dirty
@@ -6,10 +6,10 @@ deb:
 	docker compose down --remove-orphans
 	docker compose run --rm debbuilder
 
-build:
-	rm -f *.deb *.rpm
+deb:
+	rm -f *.deb
 	docker compose down --remove-orphans
-	docker compose up
+	docker compose run debbuilder
 	du -sh *.deb *.rpm
 
 rpm:
