@@ -1,6 +1,35 @@
-version: '3.9'
-
+version: "3.9"
 services:
+  perl:
+    entrypoint:
+    - /bin/bash
+    - -c
+    - |
+      perl -i -p -e 's#Version \d+\.\d+.*#Version VERSION#' index.html
+    image: perl:slim
+    working_dir: /src
+    volumes:
+    - ./streambox-templates-app:/src
+  python:
+    entrypoint:
+    - /bin/bash
+    - -c
+    - "pip install bump2version\nbump2version minor --allow-dirty      \n"
+    image: python:slim
+    working_dir: /src
+    volumes:
+    - ./:/src
+  nodejs:
+    entrypoint:
+    - /bin/sh
+    - -c
+    - |
+      npm install .
+      npm run build
+    image: node:alpine
+    working_dir: /src
+    volumes:
+    - ./streambox-templates-app:/src
   rpmbuilder:
     entrypoint:
     - bash
@@ -11,7 +40,7 @@ services:
       /tmp/src/make_react_webui_rpm.sh
       find /root/rpmbuild/RPMS -type f -iname '*.rpm' -exec cp {} /dist \;
       cd /dist && /dist/testrpm.sh
-    image: docker.io/taylorm/rpmbuilder
+    image: docker.io/taylorm/rpmbuilder@sha256:fdb7c486340995be7fafbd6d9aa08dcfc4f4192925e9d541af32df4b39e699c1
     volumes:
     - ./sbphplogin-reactapp:/tmp/src/sbphplogin-reactapp
     - ./streambox-templates-app:/tmp/src/streambox-templates-app
@@ -20,14 +49,14 @@ services:
   debbuilder:
     entrypoint:
     - bash
-    - -c 
+    - -c
     - |
       cp -r /tmp/src/DEBIAN /tmp
       cp /tmp/src/make_react_webui_deb.sh /tmp
       /tmp/src/make_react_webui_deb.sh
       cp /tmp/*.deb /dist
       cd /dist && /dist/testdeb.sh
-    image: docker.io/taylorm/debbuilder
+    image: docker.io/taylorm/debbuilder@sha256:f896373e92d6e920f6c0d1be528591ca3c9adb09af613adff124d26de7a7da6d
     volumes:
     - ./sbphplogin-reactapp:/tmp/src/sbphplogin-reactapp
     - ./streambox-templates-app:/tmp/src/streambox-templates-app
