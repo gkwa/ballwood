@@ -52,7 +52,7 @@ for i in "${LGN_DIST}/logo/"*; do
 done
 
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
-cp "${LGN_DIST}/logo/logo.jpg" "${DIST_DIR}/var/local/WebData/logo/"
+cp "${LGN_DIST}/logo/streambox-logo.svg" "${DIST_DIR}/var/local/WebData/logo/"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
 
 find "${DIST_DIR}/var/local/WebData/logo" -type d -print0 | xargs -0 -n1 chmod 666
