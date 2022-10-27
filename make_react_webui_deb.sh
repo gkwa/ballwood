@@ -74,4 +74,7 @@ find "${DIST_DIR}/var/local/WebData/templates" -iname "*Read-only*" | while read
     chown root:root "$file"
 done
 
+chown root:root "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
+chmod 644 "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
+
 dpkg --build "${DIST_DIR}" .
