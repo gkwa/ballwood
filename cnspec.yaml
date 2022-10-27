@@ -155,11 +155,11 @@ queries:
       permissions.user_executable == true
 
       permissions.group_readable == true
-      permissions.group_writeable == false
+      permissions.group_writeable == true
       permissions.group_executable == true
 
       permissions.other_readable == true
-      permissions.other_writeable == false
+      permissions.other_writeable == true
       permissions.other_executable == true
     }
 

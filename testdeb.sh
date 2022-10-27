@@ -12,10 +12,4 @@ done
 
 sort -k2 manifest-deb.txt | cat -n
 
-ls -la /var/www/sbuiauth/logo
-exit 0
-
-find /var/local/WebData/logo -type f
-ls -la /var/www/sbuiauth/logo
-touch /var/www/sbuiauth/logo/test.txt
-ls -la /var/local/WebData/logo/test.txt
+cnspec scan local --incognito -f cnspec.yaml
