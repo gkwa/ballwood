@@ -1,3 +1,5 @@
+#!/bin/bash
+
 version=$(perl -ne 'm{current_version.*= *([\d\.]+)} && print qq/$1/' .bumpversion.cfg)
 deb=streambox-react-webui_${version}_all.deb
 datestamp=$(date +%y-%m-%d)
@@ -6,7 +8,9 @@ old=React-22-10-11.tar.gz
 x1=$(echo $old | sed 's#.tar.gz##')
 curl -O https://streambox-react-templates-app.s3-us-west-2.amazonaws.com/$old
 tar xzf $old
-find $x1 -type f ! -iname "*react*" | while read file; do cp $file React-${datestamp}; done
+find $x1 -type f ! -iname "*react*" | while read file; do
+    cp $file React-${datestamp}
+done
 cp $deb React-${datestamp}
 find React-${datestamp} -type f
 tar czf React-${datestamp}.tar.gz React-${datestamp}
@@ -21,4 +25,3 @@ curl -O https://streambox-react-templates-app.s3-us-west-2.amazonaws.com/React-$
 rm -rf React-${datestamp}
 tar xzf React-${datestamp}.tar.gz
 rg --files React-${datestamp}
-
