@@ -21,15 +21,16 @@ services:
     - ./:/src
   nodejs:
     entrypoint:
-    - /bin/sh
+    - /bin/bash
     - -c
     - |
+      cd streambox-templates-app
       npm install .
       npm run build
-    image: node:alpine
+    image: node:19-bullseye
     working_dir: /src
     volumes:
-    - ./streambox-templates-app:/src
+    - ./:/src
   rpmbuilder:
     entrypoint:
     - bash
