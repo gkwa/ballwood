@@ -4,6 +4,8 @@ build:
 
 	docker compose run --rm perl
 	docker compose run --rm python
+
+	patch --forward streambox-templates-app/src/components/Navbar.jsx patch.txt
 	docker compose run --rm nodejs
 	docker compose run --rm debbuilder
 
