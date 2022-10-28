@@ -59,7 +59,7 @@ services:
       /tmp/src/make_react_webui_deb.sh
       cp /tmp/*.deb /dist
       cd /dist && /dist/testdeb.sh
-    image: docker.io/taylorm/debbuilder@sha256:f896373e92d6e920f6c0d1be528591ca3c9adb09af613adff124d26de7a7da6d
+    image: docker.io/taylorm/debbuilder@sha256:227b7990d3af99eb97b0ecae04fa8f14544df8fcff10ba2bbb616144b5dcfbd0
     volumes:
     - ./sbphplogin-reactapp:/tmp/src/sbphplogin-reactapp
     - ./streambox-templates-app:/tmp/src/streambox-templates-app
