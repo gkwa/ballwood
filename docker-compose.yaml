@@ -27,7 +27,7 @@ services:
       cd streambox-templates-app
       npm install .
       npm run build
-    image: node:19-bullseye
+    image: node:18.6
     working_dir: /src
     volumes:
     - ./:/src
