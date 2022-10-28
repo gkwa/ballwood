@@ -14,7 +14,9 @@ services:
     entrypoint:
     - /bin/bash
     - -c
-    - "pip install bump2version\nbump2version minor --allow-dirty"
+    - |
+      pip install --root-user-action=ignore bump2version
+      bump2version minor --allow-dirty
     image: python:slim
     working_dir: /src
     volumes:
