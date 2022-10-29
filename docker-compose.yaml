@@ -52,11 +52,12 @@ services:
   debbuilder:
     entrypoint:
     - bash
+    - -x
     - -c
     - |
       cp -r /tmp/src/DEBIAN /tmp
       cp /tmp/src/make_react_webui_deb.sh /tmp
-      /tmp/src/make_react_webui_deb.sh
+      bash -x /tmp/src/make_react_webui_deb.sh
       cp /tmp/*.deb /dist
       cd /dist && /dist/testdeb.sh
     image: docker.io/taylorm/debbuilder@sha256:227b7990d3af99eb97b0ecae04fa8f14544df8fcff10ba2bbb616144b5dcfbd0
