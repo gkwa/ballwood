@@ -77,12 +77,6 @@ done
 chown root:root "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
 chmod 644 "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
 
-cp "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg" "${DIST_DIR}/var/local/WebData/logo/logo.svg"
-chown www-data:www-data "${DIST_DIR}/var/local/WebData/logo/logo.svg"
-chmod 644 "${DIST_DIR}/var/local/WebData/logo/logo.svg"
-
-echo "/var/local/WebData/logo/logo.svg" >>"${DIST_DIR}/DEBIAN/conffiles"
-
 echo '################## conffiles ##################'
 cat "${DIST_DIR}/DEBIAN/conffiles" |
     grep -vi -- Read-only |
