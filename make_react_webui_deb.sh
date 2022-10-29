@@ -32,8 +32,8 @@ for i in "${TPL_DIST}/dist/templates/"*; do
 done
 cp "${TPL_DIST}/dist/templates/"* "${DIST_DIR}/var/local/WebData/templates/"
 
-find "${DIST_DIR}/var/local/WebData/templates" -type d -print0 | xargs -0 -n1 chmod 666
-find "${DIST_DIR}/var/local/WebData/templates" -type f -print0 | xargs -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData/templates" -type d -print0 | xargs -r -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData/templates" -type f -print0 | xargs -r -0 -n1 chmod 666
 
 chown www-data:www-data "${DIST_DIR}/var/local/WebData/templates"
 
@@ -44,7 +44,7 @@ cp "${LGN_DIST}/styles.css"         "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/index.php"          "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/auth.php"           "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/streambox-logo.svg" "${DIST_DIR}/var/www/sbuiauth/"
-find "${DIST_DIR}/var/www/sbuiauth" -type f -print0 | xargs -0 -n1 chmod 644
+find "${DIST_DIR}/var/www/sbuiauth" -type f -print0 | xargs -r -0 -n1 chmod 644
 
 for i in "${LGN_DIST}/logo/"*; do
     CF="$(basename "$i")"
@@ -54,16 +54,16 @@ done
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
 
-find "${DIST_DIR}/var/local/WebData/logo" -type d -print0 | xargs -0 -n1 chmod 666
-find "${DIST_DIR}/var/local/WebData/logo" -type f -print0 | xargs -0 -n1 chmod 666
-find "${DIST_DIR}/var/local/WebData/logo" -type f -print0 | xargs -0 -n1 chown www-data
+find "${DIST_DIR}/var/local/WebData/logo" -type d -print0 | xargs -r -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData/logo" -type f -print0 | xargs -r -0 -n1 chmod 666
+find "${DIST_DIR}/var/local/WebData/logo" -type f -print0 | xargs -r -0 -n1 chown www-data
 
 _pwd="$(pwd)"
 cd "${DIST_DIR}/var/www/sbuiauth/"
 ln -s ../../local/WebData/logo/ logo
 cd "$_pwd"
 
-find "${DIST_DIR}/var/local/WebData" -type d -print0 | xargs -0 -n1 chmod 777
+find "${DIST_DIR}/var/local/WebData" -type d -print0 | xargs -r -0 -n1 chmod 777
 chown -R www-data:www-data "${DIST_DIR}/var/local/WebData/"
 
 IFS='
