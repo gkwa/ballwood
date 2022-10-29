@@ -12,4 +12,4 @@ done
 
 sort -k2 manifest-deb.txt | cat -n
 
-cnspec scan local --incognito -f cnspec.yaml
+cnspec scan local --incognito -f cnspec.yaml -o full
