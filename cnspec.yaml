@@ -16,7 +16,6 @@ policies:
       my-test2b: null
       my-test3: null
       my-test4: null
-      my-test4b: null
       my-test5: null
       my-test6: null
       my-test7: null
@@ -89,28 +88,6 @@ queries:
       permissions.other_writeable == false
       permissions.other_executable == true
     }
-
-- uid: my-test4b
-  title: readonly templates are read only /var/local/WebData/templates/Colorful Prod Template (Default - Read-only)
-  severity: 100
-  query: |
-    file('/var/local/WebData/templates/Colorful Prod Template (Default - Read-only)') {
-      user.name == 'root'
-      group.name == 'root'
-
-      permissions.user_readable == true
-      permissions.group_readable == true
-      permissions.other_readable == true
-
-      permissions.user_writeable == true
-      permissions.group_writeable == false
-      permissions.other_writeable == false
-
-      permissions.user_executable == false
-      permissions.group_executable == false
-      permissions.other_executable == false
-    }
-
 
 - uid: my-test5
   title: /var/www/sbuiauth permissions

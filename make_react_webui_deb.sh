@@ -61,13 +61,6 @@ cd "$_pwd"
 find "${DIST_DIR}/var/local/WebData" -type d -print0 | xargs -r -0 -n1 chmod 777
 chown -R www-data:www-data "${DIST_DIR}/var/local/WebData/"
 
-IFS='
-'
-find "${DIST_DIR}/var/local/WebData/templates" -iname "*Read-only*" | while read file; do
-    chmod 644 "$file"
-    chown root:root "$file"
-done
-
 echo '################## conffiles ##################'
 cat "${DIST_DIR}/DEBIAN/conffiles" | grep -vi -- Read-only >"${DIST_DIR}/DEBIAN/conffiles.1"
 mv "${DIST_DIR}/DEBIAN/conffiles.1" "${DIST_DIR}/DEBIAN/conffiles"
