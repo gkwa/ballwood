@@ -26,6 +26,10 @@ mkdir -p "${DIST_DIR}/var/www/sbuiapp/"
 cp "${TPL_DIST}/dist/index.html" "${DIST_DIR}/var/www/sbuiapp/"
 
 mkdir -p "${DIST_DIR}/var/local/WebData/templates/"
+for i in "${TPL_DIST}/dist/templates/"*; do
+    CF="$(basename "$i")"
+    echo "/var/local/WebData/templates/${CF}" >>"${DIST_DIR}/DEBIAN/conffiles"
+done
 cp "${TPL_DIST}/dist/templates/"* "${DIST_DIR}/var/local/WebData/templates/"
 
 find "${DIST_DIR}/var/local/WebData/templates" -type d -print0 | xargs -0 -n1 chmod 666
@@ -42,7 +46,10 @@ cp "${LGN_DIST}/auth.php"           "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/streambox-logo.svg" "${DIST_DIR}/var/www/sbuiauth/"
 find "${DIST_DIR}/var/www/sbuiauth" -type f -print0 | xargs -0 -n1 chmod 644
 
->"${DIST_DIR}/DEBIAN/conffiles"
+for i in "${LGN_DIST}/logo/"*; do
+    CF="$(basename "$i")"
+    echo "/var/local/WebData/logo/${CF}" >>"${DIST_DIR}/DEBIAN/conffiles"
+done
 
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
 cp "${LGN_DIST}/logo/streambox-logo.svg" "${DIST_DIR}/var/local/WebData/logo/"
