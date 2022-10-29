@@ -46,11 +46,6 @@ cp "${LGN_DIST}/auth.php"           "${DIST_DIR}/var/www/sbuiauth/"
 cp "${LGN_DIST}/streambox-logo.svg" "${DIST_DIR}/var/www/sbuiauth/"
 find "${DIST_DIR}/var/www/sbuiauth" -type f -print0 | xargs -r -0 -n1 chmod 644
 
-for i in "${LGN_DIST}/logo/"*; do
-    CF="$(basename "$i")"
-    echo "/var/local/WebData/logo/${CF}" >>"${DIST_DIR}/DEBIAN/conffiles"
-done
-
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
 
