@@ -52,7 +52,6 @@ for i in "${LGN_DIST}/logo/"*; do
 done
 
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
-cp "${LGN_DIST}/logo/streambox-logo.svg" "${DIST_DIR}/var/local/WebData/logo/"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
 
 find "${DIST_DIR}/var/local/WebData/logo" -type d -print0 | xargs -0 -n1 chmod 666
@@ -74,14 +73,8 @@ find "${DIST_DIR}/var/local/WebData/templates" -iname "*Read-only*" | while read
     chown root:root "$file"
 done
 
-chown root:root "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
-chmod 644 "${DIST_DIR}/var/local/WebData/logo/streambox-logo.svg"
-
 echo '################## conffiles ##################'
-cat "${DIST_DIR}/DEBIAN/conffiles" |
-    grep -vi -- Read-only |
-    grep -vi -- streambox-logo.svg \
->"${DIST_DIR}/DEBIAN/conffiles.1"
+cat "${DIST_DIR}/DEBIAN/conffiles" | grep -vi -- Read-only >"${DIST_DIR}/DEBIAN/conffiles.1"
 mv "${DIST_DIR}/DEBIAN/conffiles.1" "${DIST_DIR}/DEBIAN/conffiles"
 cat "${DIST_DIR}/DEBIAN/conffiles"
 
