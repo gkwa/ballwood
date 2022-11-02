@@ -93,9 +93,6 @@ queries:
 - uid: my-test5
   title: /var/www/sbuiauth permissions
   severity: 100
-  docs:
-    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
-    remediation: ""
   query: |
     command("find /var/www/sbuiauth -printf '%u:%g:%m:%p\n'") {
       stdout.contains("root:root:777:/var/www/sbuiauth/logo")
@@ -111,9 +108,6 @@ queries:
 - uid: my-test6
   title: /var/www/sbuiauth/logo is symlink
   severity: 100
-  docs:
-    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
-    remediation: ""
   query: |
     command("file /var/www/sbuiauth/logo") {
       stdout.contains("/var/www/sbuiauth/logo: symbolic link to ../../local/WebData/logo/")
@@ -122,9 +116,6 @@ queries:
 - uid: my-test7
   title: /var/www/sbuiauth/logo has the expected permissions
   severity: 100
-  docs:
-    desc: Periodic checking of the filesystem integrity is needed to detect changes to the filesystem.
-    remediation: ""
   query: |
     file("/var/www/sbuiauth/logo") {
 
