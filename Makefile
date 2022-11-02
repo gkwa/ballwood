@@ -5,7 +5,6 @@ build:
 	docker compose run --rm perl
 	docker compose run --rm python
 
-	if ! patch --silent --dry-run --forward streambox-templates-app/src/components/Navbar.jsx patch.txt &>/dev/null; then patch --forward streambox-templates-app/src/components/Navbar.jsx patch.txt &>/dev/null; fi;
 	docker compose run --rm nodejs
 	docker compose run --rm debbuilder
 

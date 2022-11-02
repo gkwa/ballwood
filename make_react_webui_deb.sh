@@ -47,6 +47,7 @@ cp "${LGN_DIST}/streambox-logo.svg" "${DIST_DIR}/var/www/sbuiauth/"
 find "${DIST_DIR}/var/www/sbuiauth" -type f -print0 | xargs -r -0 -n1 chmod 644
 
 mkdir -p "${DIST_DIR}/var/local/WebData/logo/"
+cp "${LGN_DIST}/logo/logo.svg"      "${DIST_DIR}/var/local/WebData/logo/logo.svg"
 chown -R www-data "${DIST_DIR}/var/local/WebData/logo/"
 
 find "${DIST_DIR}/var/local/WebData/logo" -type d -print0 | xargs -r -0 -n1 chmod 666

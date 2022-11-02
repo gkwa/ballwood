@@ -19,6 +19,7 @@ policies:
       my-test5: null
       my-test6: null
       my-test7: null
+      my-test8: null
 queries:
 - uid: my-test2
   title: /var/local/WebData/templates has expected permissions
@@ -140,3 +141,21 @@ queries:
       permissions.other_executable == true
     }
 
+- uid: my-test8
+  title: /var/www/sbuiauth/logo/logo.svg exists and is updatable
+  severity: 100
+  query: |
+    file("/var/www/sbuiauth/logo/logo.svg") {
+
+      permissions.user_readable == true
+      permissions.user_writeable == true
+      permissions.user_executable == false
+
+      permissions.group_readable == true
+      permissions.group_writeable == true
+      permissions.group_executable == false
+
+      permissions.other_readable == true
+      permissions.other_writeable == true
+      permissions.other_executable == false
+    }
