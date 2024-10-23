@@ -29,7 +29,7 @@ services:
       cd streambox-templates-app
       npm install .
       npm run build
-    image: node:19-buster
+    image: node:20-buster
     working_dir: /src
     volumes:
     - ./:/src
